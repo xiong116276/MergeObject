@@ -3,7 +3,7 @@
   win.MergeObject = function (param) {
     this.data   = param.data;//需要合并的对象数组
     this.idProp = param.idProp;//某一个相同属性(具有相同的值)
-    this.props  = param.props||[];//想要合并的属性(值)
+    this.props  = param.props;//想要合并的属性(值)
     this.b = {};//将包含某一个相同属性的对象放入一个数组内
     this.reData = {};//合并后的对象
     this.data.forEach(function (v) {
