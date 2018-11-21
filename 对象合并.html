@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    table{
+      border-collapse: collapse;
+    }
+    table td {
+      width: 50px;
+      height: 20px;
+      border: 1px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <!--<table>-->
+    <!--<tr><td align="center" valign="center" rowspan="15">111</td><td rowspan="15">222</td><td rowspan="15">333</td><td rowspan="5"></td><td></td></tr>-->
+    <!--<tr><td></td></tr>-->
+    <!--<tr><td></td></tr>-->
+    <!--<tr><td></td></tr>-->
+    <!--<tr><td></td></tr>-->
+    <!--<tr><td rowspan="5"></td><td></td></tr>-->
+    <!--<tr><td></td></tr>-->
+    <!--<tr><td></td></tr>-->
+    <!--<tr><td></td></tr>-->
+    <!--<tr><td></td></tr>-->
+    <!--<tr><td rowspan="5"></td><td></td></tr>-->
+    <!--<tr><td></td></tr>-->
+    <!--<tr><td></td></tr>-->
+    <!--<tr><td></td></tr>-->
+    <!--<tr><td></td></tr>-->
+  <!--</table>-->
+  <table class="datatable" style=" width:960px; " cellspacing="1" cellpadding="0" border="1px;solid;">
+    <tbody><tr class="">
+      <td>储能装置编码</td>
+      <td>电池包编码</td>
+      <td>供应商编码</td>
+      <td>供应商名称</td>
+      <td>模组物料编码</td>
+      <td>模组国标</td>
+      <td>电池单体编码</td>
+    </tr>
+    </tbody><tbody class="" id="baterry">
+  <tr> <td rowspan="7">117393305842</td><td rowspan="7">001PEH0500000186D0000003</td><td rowspan="7">001</td><td rowspan="7">宁德时代新能源科技股份有限公司</td><td rowspan="2">830100-00660</td><td rowspan="2">001MEA160000018630000087</td><td>001CEH050000018722591193</td></tr>
+  <tr><td>001CEH050000018722591194</td></tr>
+  <tr> <td rowspan="2">830300-00117</td><td rowspan="2">001MEH050000018722591193</td><td>001CEH050000018722591197</td></tr>
+  <tr><td>001CEH050000018722591198</td></tr>
+  <tr> <td rowspan="3">930300-00119</td><td rowspan="3">001MEB050000018722591199</td><td>001CEM050000018722591199</td></tr>
+  <tr><td>001CEC050000018722591199</td></tr>
+  <tr><td>001CEC050000018722591200</td></tr>
+  </tbody>
+  </table>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js" ></script>
+  <script>
+    var a=[
+      {
+        CompId: "海泊河",
+        Endtime:"",
+        HistoryId:"",
+        Id:"136",
+        OpeaTime:"2018-11-21 11:52:02",
+        Postscript:"wunichuchi",
+        Starttime:"2018-11-01",
+        Status:"已冻结",
+        TableName:"污泥处置报表",
+        To_ComName:"海泊河",
+        To_TableName:"污泥处置报表",
+        UpdateStatus:"1",
+        tableType:"日采集",
+        target:"0",
+      }
+      ,{
+        CompId: "海泊河",
+        Endtime:"2018-02",
+        HistoryId:"128、134",
+        Id:"136",
+        OpeaTime:"2018-11-21 11:52:02",
+        Postscript:"wunichuchi",
+        Starttime:"2018-11-01",
+        Status:"已冻结",
+        TableName:"污泥电量药剂月报表",
+        To_ComName:"海泊河",
+        To_TableName:"污泥处置报表",
+        UpdateStatus:"1",
+        tableType:"日采集",
+        target:"0",
+      }
+      ,{
+        CompId: "团岛",
+        Endtime:"2018-02",
+        HistoryId:"128、134",
+        Id:"136",
+        OpeaTime:"2018-11-21 11:52:02",
+        Postscript:"wunichuchi",
+        Starttime:"2018-11-01",
+        Status:"已冻结",
+        TableName:"污泥电量药剂月报表",
+        To_ComName:"海泊河",
+        To_TableName:"污泥处置报表",
+        UpdateStatus:"1",
+        tableType:"日采集",
+        target:"0",
+      }
+      ,{
+        CompId: "团岛",
+        Endtime:"2018-02",
+        HistoryId:"128、134",
+        Id:"136",
+        OpeaTime:"2018-11-21 11:52:02",
+        Postscript:"wunichuchi",
+        Starttime:"2018-11-01",
+        Status:"已冻结",
+        TableName:"污泥处置报表",
+        To_ComName:"海泊河",
+        To_TableName:"污泥处置报表",
+        UpdateStatus:"1",
+        tableType:"日采集",
+        target:"0",
+      }
+      ,{
+        CompId: "团岛",
+        Endtime:"2018-02",
+        HistoryId:"128、134",
+        Id:"136",
+        OpeaTime:"2018-11-21 11:52:03",
+        Postscript:"wunichuchi",
+        Starttime:"2018-11-01",
+        Status:"已冻结",
+        TableName:"污泥处置报表",
+        To_ComName:"海泊河",
+        To_TableName:"污泥处置报表",
+        UpdateStatus:"1",
+        tableType:"日采集",
+        target:"0",
+      }
+    ];
+    (function (win, doc) {
+      win.MergeObject = function (param) {
+        this.data   = param.data;//需要合并的对象数组
+        this.idProp = param.idProp;//某一个相同属性(具有相同的值)
+        this.props  = param.props;//想要合并的属性(值)
+        this.b = {};//将包含某一个相同属性的对象放入一个数组内
+        this.reData = {};//合并后的对象
+        this.data.forEach(function (v) {
+          if(this.b[v[this.idProp]] == undefined){
+            this.b[v[this.idProp]]=[];
+          }
+          this.b[v[this.idProp]].push(v);
+        }.bind(this));
+
+        for (var k in this.b) {
+          this.reData[k] = {};
+          if(this.b[k].length===1){
+            this.reData[k] = this.b[k][0];
+          }else{
+            for(var i in this.b[k][0]){
+              this.reData[k][i] = '';
+            }
+            this.b[k].forEach(function (v) {
+              for(var i in v){
+                if(this.props.indexOf(i) > -1){
+                  if(this.reData[k][i].indexOf(v[i]) < 0){
+                    this.reData[k][i]+=v[i]+'、';
+                  }
+                }else{
+                  this.reData[k][i] = v[i];
+                }
+              }
+            }.bind(this));
+
+            for(var i in this.reData[k]){
+              if(this.props.indexOf(i) > -1){
+                this.reData[k][i] = this.reData[k][i].slice(0,-1);
+              }
+            }
+          }
+        }
+      }
+    })(window,document);
+    var mergeObject = new MergeObject({
+      data:a,//需要合并的对象数组
+      idProp:'OpeaTime',//要合并的对象中某一个相同属性(具有相同的值)
+      props:['TableName','CompId']//需要合并的对象的属性(不同的值需要合并，相同的值不用合并)
+    });
+    console.log(mergeObject.reData);
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
